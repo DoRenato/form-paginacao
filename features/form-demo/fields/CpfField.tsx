@@ -19,7 +19,7 @@ export function CpfField({ control }: FieldProps) {
       control={control}
       render={({ field, fieldState }) => (
         <Field data-invalid={fieldState.invalid}>
-          <FieldLabel htmlFor="name">CPF</FieldLabel>
+          <FieldLabel htmlFor="cpf">CPF</FieldLabel>
           <Input
             {...field}
             id="cpf"
