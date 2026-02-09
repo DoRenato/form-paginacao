@@ -1,6 +1,10 @@
 import { isValidCpf } from "@/lib/cpfValidator";
 import * as z from "zod";
 
+
+
+const onlyLetters = /^[\p{L}\s]+$/u;
+
 const phoneSchema = z
   .string()
   // remove tudo que não for número
@@ -19,12 +23,16 @@ const phoneSchema = z
 export const formSchema = z.object({
   name: z
     .string()
-    .min(2, "O nome deve conter pelo menos 2 caracteres.")
-    .max(32, "O nome deve conter no máximo 32 caracteres."),
+    .trim()
+    .min(2, "Nome muito curto.")
+    .max(32, "Nome muito longo.")
+    .regex(onlyLetters, "Use apenas letras"),
   lastName: z
     .string()
-    .min(2, "O Sobrenome deve conter pelo menos 2 caracteres.")
-    .max(32, "O Sobrenome deve conter no máximo 32 caracteres."),
+    .trim()
+    .min(2, "Sobrenome muito curto.")
+    .max(32, "Sobrenome muito longo.")
+    .regex(onlyLetters, "Use apenas letras"),
   phoneNumbers: z
     .array(
       z.object({
@@ -43,6 +51,8 @@ export const formSchema = z.object({
     .refine((value) => isValidCpf(value), {
       message: "CPF inválido.",
     }),
+  birthDate: z.date({error:"Data obrigatória"
+  }),
   // birthDate: z
   //   .string()
   //   .trim()

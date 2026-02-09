@@ -15,14 +15,22 @@ import { FormValues } from "./schema";
 import { FormProvider } from "react-hook-form";
 import PhoneNumber from "./fields/PhoneNumber";
 import { CpfField } from "./fields/CpfField";
-
+import { BirthDateField } from "./fields/BirthDate";
 
 export default function FormDemo() {
   const form = useFormDemo();
 
   function onSubmit(data: FormValues) {
     toast.success("Enviado");
-    console.log(data);
+    const formatted = {
+      ...data,
+      birthDate: data.birthDate
+        ? data.birthDate.toLocaleDateString("pt-BR")
+        : "",
+    };
+
+    console.log(formatted);
+    // console.log(data);
   }
 
   return (
@@ -38,6 +46,7 @@ export default function FormDemo() {
             <LastNameField control={form.control} />
             <CpfField control={form.control} />
             <PhoneNumber control={form.control} />
+            <BirthDateField />
           </div>
 
           <div className="pt-5 pl-6">

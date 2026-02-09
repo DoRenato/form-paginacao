@@ -10,6 +10,7 @@ export function useFormDemo() {
       lastName: "",
       cpf:"",
       phoneNumbers: [{ number: "" }],
+      birthDate: undefined,
     },
   });
 }
