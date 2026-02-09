@@ -21,24 +21,28 @@ export const formSchema = z.object({
     .string()
     .min(2, "O nome deve conter pelo menos 2 caracteres.")
     .max(32, "O nome deve conter no máximo 32 caracteres."),
-
   lastName: z
     .string()
     .min(2, "O Sobrenome deve conter pelo menos 2 caracteres.")
     .max(32, "O Sobrenome deve conter no máximo 32 caracteres."),
-
-  // phoneNumber: phoneSchema,
-  // phoneNumber2: phoneSchema.optional().or(z.literal("")), // permite vazio
-  // cpf: z
-  //   .string()
-  //   .trim() // remove espaços em branco no começo e final da string
-  //   .transform((value) => value.replace(/\D/g, "")) // remove pontos e traço
-  //   .refine((value) => value.length === 11, {
-  //     message: "CPF deve conter 11 números.",
-  //   })
-  //   .refine((value) => isValidCpf(value), {
-  //     message: "CPF inválido.",
-  //   }),
+  phoneNumbers: z
+    .array(
+      z.object({
+        number: phoneSchema,
+      }),
+    )
+    .min(1, "Informe ao menos um telefone")
+    .max(2, "Máximo de dois telefones"),
+  cpf: z
+    .string()
+    .trim() // remove espaços em branco no começo e final da string
+    .transform((value) => value.replace(/\D/g, "")) // remove pontos e traço
+    .refine((value) => value.length === 11, {
+      message: "CPF deve conter 11 números.",
+    })
+    .refine((value) => isValidCpf(value), {
+      message: "CPF inválido.",
+    }),
   // birthDate: z
   //   .string()
   //   .trim()
@@ -61,9 +65,9 @@ export const formSchema = z.object({
   //     },
   //     {
   //       message: "Você precisa ter ao menos 16 anos",
-  //     }
+  //     },
   //   ),
-  //   gender: z.enum(["male", "female", "not_say"]),
+  // gender: z.enum(["male", "female", "not_say"]),
 });
 
 export type FormValues = z.infer<typeof formSchema>;

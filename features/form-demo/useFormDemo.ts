@@ -8,6 +8,8 @@ export function useFormDemo() {
     defaultValues: {
       name: "",
       lastName: "",
+      cpf:"",
+      phoneNumbers: [{ number: "" }],
     },
   });
 }
