@@ -27,7 +27,7 @@ export default function FormDemo() {
     }));
     const formatted = {
       ...data,
-      PhoneNumber:cleaned,
+      phoneNumbers:cleaned,
       birthDate: data.birthDate
         ? data.birthDate.toLocaleDateString("pt-BR")
         : "",
