@@ -19,6 +19,7 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group";
 import { FormValues } from "../schema";
+import { useMask } from "@react-input/mask";
 
 type FieldProps = {
   control: Control<FormValues>;
@@ -28,6 +29,10 @@ export default function PhoneNumber({ control }: FieldProps) {
   const { fields, append, remove } = useFieldArray({
     control: control,
     name: "phoneNumbers",
+  });
+  const inputRef = useMask({
+    mask: "(##) #####-####",
+    replacement: { "#": /\d/ },
   });
 
   return (
@@ -51,6 +56,7 @@ export default function PhoneNumber({ control }: FieldProps) {
                         {...controllerField}
                         id={`phoneNumbers.${index}.number`}
                         aria-invalid={fieldState.invalid}
+                        ref={inputRef}
                         placeholder="(11) 98888-7777"
                         type="text"
                         autoComplete="off"

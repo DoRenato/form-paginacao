@@ -22,8 +22,12 @@ export default function FormDemo() {
 
   function onSubmit(data: FormValues) {
     toast.success("Enviado");
+    const cleaned = data.phoneNumbers.map((p) => ({
+      number: p.number.replace(/\D/g, ""),
+    }));
     const formatted = {
       ...data,
+      PhoneNumber:cleaned,
       birthDate: data.birthDate
         ? data.birthDate.toLocaleDateString("pt-BR")
         : "",
