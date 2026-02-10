@@ -16,6 +16,7 @@ import FormSection from "@/components/form/FormSection";
 import { StreetField } from "./fields/address/StreetField";
 import { AddressNumberField } from "./fields/address/AddressNumberField";
 import { ComplementField } from "./fields/address/ComplementField";
+import { NeighborhoodField } from "./fields/address/NeighborhoodField";
 
 export default function FormDemo() {
   const form = useFormDemo();
@@ -79,6 +80,9 @@ export default function FormDemo() {
             </div>
             <div className="col-span-4">
               <ComplementField control={form.control} />
+            </div>
+            <div className="col-span-4">
+              <NeighborhoodField control={form.control} />
             </div>
           </div>
           <div className="pt-5 pl-6">

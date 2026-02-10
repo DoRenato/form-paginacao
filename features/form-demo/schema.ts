@@ -22,7 +22,7 @@ export const addressSchema = z.object({
   street: z.string().min(1, "Rua obrigatória"),
   number: z.string().min(1, "Número obrigatório"),
   complement: z.string().optional(),
-  // neighborhood: z.string().min(1, "Bairro obrigatório"),
+  neighborhood: z.string().min(1, "Bairro obrigatório"),
   // zipCode: z.string().transform((val) => val.replace(/\D/g, "")),
   // city: z.string().min(1),
   // state: z.enum([
