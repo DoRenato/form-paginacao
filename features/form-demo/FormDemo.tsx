@@ -13,9 +13,9 @@ import { CpfField } from "./fields/CpfField";
 import { BirthDateField } from "./fields/BirthDate";
 import GenderField from "./fields/GenderField";
 import FormSection from "@/components/form/FormSection";
-import { AddressStreetField } from "./fields/AddressStreetField";
-import { AddressNumberField } from "./fields/AddressNumberField";
-import { AddressComplementField } from "./fields/AddressComplementField";
+import { StreetField } from "./fields/address/StreetField";
+import { AddressNumberField } from "./fields/address/AddressNumberField";
+import { ComplementField } from "./fields/address/ComplementField";
 
 export default function FormDemo() {
   const form = useFormDemo();
@@ -72,13 +72,13 @@ export default function FormDemo() {
           </div>
           <div className="grid grid-cols-12 gap-3 px-6">
             <div className="col-span-4">
-              <AddressStreetField control={form.control} />
+              <StreetField control={form.control} />
             </div>
             <div className="col-span-2">
               <AddressNumberField control={form.control} />
             </div>
             <div className="col-span-4">
-              <AddressComplementField control={form.control} />
+              <ComplementField control={form.control} />
             </div>
           </div>
           <div className="pt-5 pl-6">
