@@ -18,6 +18,7 @@ import { AddressNumberField } from "./fields/address/AddressNumberField";
 import { ComplementField } from "./fields/address/ComplementField";
 import { NeighborhoodField } from "./fields/address/NeighborhoodField";
 import { ZipCodeField } from "./fields/address/ZipCodeField";
+import { CityField } from "./fields/address/CityField";
 
 export default function FormDemo() {
   const form = useFormDemo();
@@ -87,6 +88,9 @@ export default function FormDemo() {
             </div>
             <div className="col-span-4">
               <ZipCodeField control={form.control} />
+            </div>
+            <div className="col-span-4">
+              <CityField control={form.control} />
             </div>
           </div>
           <div className="pt-5 pl-6">

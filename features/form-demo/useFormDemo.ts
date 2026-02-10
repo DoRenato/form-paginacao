@@ -18,6 +18,7 @@ export function useFormDemo() {
         complement:"",
         neighborhood:"",
         zipCode:"",
+        city:"",
       },
     },
   });
