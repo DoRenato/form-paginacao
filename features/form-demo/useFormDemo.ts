@@ -8,9 +8,10 @@ export function useFormDemo() {
     defaultValues: {
       name: "",
       lastName: "",
-      cpf:"",
+      cpf: "",
       phoneNumbers: [{ number: "" }],
       birthDate: undefined,
+      gender: "not_say",
     },
   });
 }

@@ -53,31 +53,7 @@ export const formSchema = z.object({
     }),
   birthDate: z.date({error:"Data obrigatória"
   }),
-  // birthDate: z
-  //   .string()
-  //   .trim()
-  //   .refine((v) => /^\d{2}\/\d{2}\/\d{4}$/.test(v), {
-  //     message: "Formato inválido. Use DD/MM/AAAA",
-  //   })
-  //   .transform((v) => {
-  //     const [day, month, year] = v.split("/").map(Number);
-
-  //     return new Date(year, month - 1, day);
-  //   })
-  //   .refine((date) => !isNaN(date.getTime()), {
-  //     message: "Data inválida",
-  //   })
-  //   .refine(
-  //     (date) => {
-  //       const age = new Date().getFullYear() - date.getFullYear();
-
-  //       return age >= 16;
-  //     },
-  //     {
-  //       message: "Você precisa ter ao menos 16 anos",
-  //     },
-  //   ),
-  // gender: z.enum(["male", "female", "not_say"]),
+  gender: z.enum(["male", "female", "not_say"]),
 });
 
 export type FormValues = z.infer<typeof formSchema>;

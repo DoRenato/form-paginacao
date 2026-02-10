@@ -13,9 +13,10 @@ import { NameField } from "./fields/NameField";
 import { LastNameField } from "./fields/LastNameField";
 import { FormValues } from "./schema";
 import { FormProvider } from "react-hook-form";
-import PhoneNumber from "./fields/PhoneNumber";
+import PhoneNumbers from "./fields/PhoneNumbersField";
 import { CpfField } from "./fields/CpfField";
 import { BirthDateField } from "./fields/BirthDate";
+import GenderField from "./fields/GenderField";
 
 export default function FormDemo() {
   const form = useFormDemo();
@@ -49,8 +50,9 @@ export default function FormDemo() {
             <NameField control={form.control} />
             <LastNameField control={form.control} />
             <CpfField control={form.control} />
-            <PhoneNumber control={form.control} />
+            <PhoneNumbers control={form.control} />
             <BirthDateField />
+            <GenderField />
           </div>
 
           <div className="pt-5 pl-6">

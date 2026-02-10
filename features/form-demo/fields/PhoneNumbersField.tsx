@@ -25,7 +25,7 @@ type FieldProps = {
   control: Control<FormValues>;
 };
 
-export default function PhoneNumber({ control }: FieldProps) {
+export default function PhoneNumbers({ control }: FieldProps) {
   const { fields, append, remove } = useFieldArray({
     control: control,
     name: "phoneNumbers",
