@@ -12,6 +12,10 @@ export function useFormDemo() {
       phoneNumbers: [{ number: "" }],
       birthDate: undefined,
       gender: "not_say",
+      address: {
+        street:"",
+        number:"",
+      },
     },
   });
 }

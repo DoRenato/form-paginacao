@@ -21,15 +21,15 @@ const phoneSchema = z
 export const addressSchema = z.object({
   street: z.string().min(1, "Rua obrigatória"),
   number: z.string().min(1, "Número obrigatório"),
-  complement: z.string().optional(),
-  neighborhood: z.string().min(1, "Bairro obrigatório"),
-  zipCode: z.string().transform((val) => val.replace(/\D/g, "")),
-  city: z.string().min(1),
-  state: z.enum([
-    "AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS",
-    "MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR",
-    "SC","SP","SE","TO",
-  ]),
+  // complement: z.string().optional(),
+  // neighborhood: z.string().min(1, "Bairro obrigatório"),
+  // zipCode: z.string().transform((val) => val.replace(/\D/g, "")),
+  // city: z.string().min(1),
+  // state: z.enum([
+  //   "AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS",
+  //   "MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR",
+  //   "SC","SP","SE","TO",
+  // ]),
 });
 
 export const formSchema = z.object({
