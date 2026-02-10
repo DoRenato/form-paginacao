@@ -1,12 +1,7 @@
 "use client";
 
 import { toast } from "sonner";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useFormDemo } from "./useFormDemo";
 import { NameField } from "./fields/NameField";
@@ -17,6 +12,8 @@ import PhoneNumbers from "./fields/PhoneNumbersField";
 import { CpfField } from "./fields/CpfField";
 import { BirthDateField } from "./fields/BirthDate";
 import GenderField from "./fields/GenderField";
+import FormSection from "@/components/form/FormSection";
+import { AddressStreetField } from "./fields/AddressStreetField";
 
 export default function FormDemo() {
   const form = useFormDemo();
@@ -28,33 +25,54 @@ export default function FormDemo() {
     }));
     const formatted = {
       ...data,
-      phoneNumbers:cleaned,
+      phoneNumbers: cleaned,
       birthDate: data.birthDate
         ? data.birthDate.toLocaleDateString("pt-BR")
         : "",
     };
 
     console.log(formatted);
-    // console.log(data);
   }
 
   return (
     <FormProvider {...form}>
       <Card>
-        <CardHeader>
-          <CardTitle>Dados Pessoais</CardTitle>
-          <CardDescription>Nos ajude a te conhecer melhor.</CardDescription>
-        </CardHeader>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="grid grid-cols-3 gap-3 px-6">
-            <NameField control={form.control} />
-            <LastNameField control={form.control} />
-            <CpfField control={form.control} />
-            <PhoneNumbers control={form.control} />
-            <BirthDateField />
-            <GenderField />
+          <FormSection
+            titulo="Dados Pessoais"
+            descricao="Nos ajude a te conhecer melhor."
+          />
+          <div className="grid grid-cols-12 gap-3 px-6">
+            <div className="col-span-4">
+              <NameField control={form.control} />
+            </div>
+            <div className="col-span-4">
+              <LastNameField control={form.control} />
+            </div>
+            <div className="col-span-4">
+              <CpfField control={form.control} />
+            </div>
+            <div className="col-span-4">
+              <PhoneNumbers control={form.control} />
+            </div>
+            <div className="col-span-4">
+              <BirthDateField />
+            </div>
+            <div className="col-span-4">
+              <GenderField />
+            </div>
           </div>
-
+          <div className="pt-15">
+            <FormSection
+              titulo="Dados de Endereço"
+              descricao="Vamos guardar seu endereço para a entrega do seu produto imaginário."
+            />
+          </div>
+          <div className="grid grid-cols-12 gap-3 px-6">
+            <div className="col-span-4">
+              <AddressStreetField control={form.control} />
+            </div>
+          </div>
           <div className="pt-5 pl-6">
             <Button type="submit">Submit</Button>
           </div>

@@ -1,8 +1,6 @@
 import { isValidCpf } from "@/lib/cpfValidator";
 import * as z from "zod";
 
-
-
 const onlyLetters = /^[\p{L}\s]+$/u;
 
 const phoneSchema = z
@@ -19,6 +17,20 @@ const phoneSchema = z
   .refine((val) => val[2] === "9", {
     message: "Número de celular inválido",
   });
+
+export const addressSchema = z.object({
+  street: z.string().min(1, "Rua obrigatória"),
+  number: z.string().min(1, "Número obrigatório"),
+  complement: z.string().optional(),
+  neighborhood: z.string().min(1, "Bairro obrigatório"),
+  zipCode: z.string().transform((val) => val.replace(/\D/g, "")),
+  city: z.string().min(1),
+  state: z.enum([
+    "AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS",
+    "MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR",
+    "SC","SP","SE","TO",
+  ]),
+});
 
 export const formSchema = z.object({
   name: z
@@ -51,9 +63,9 @@ export const formSchema = z.object({
     .refine((value) => isValidCpf(value), {
       message: "CPF inválido.",
     }),
-  birthDate: z.date({error:"Data obrigatória"
-  }),
+  birthDate: z.date({ error: "Data obrigatória" }),
   gender: z.enum(["male", "female", "not_say"]),
+  address: addressSchema,
 });
 
 export type FormValues = z.infer<typeof formSchema>;
