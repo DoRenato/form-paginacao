@@ -15,6 +15,7 @@ export function useFormDemo() {
       address: {
         street:"",
         number:"",
+        complement:"",
       },
     },
   });

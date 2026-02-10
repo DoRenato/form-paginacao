@@ -15,6 +15,7 @@ import GenderField from "./fields/GenderField";
 import FormSection from "@/components/form/FormSection";
 import { AddressStreetField } from "./fields/AddressStreetField";
 import { AddressNumberField } from "./fields/AddressNumberField";
+import { AddressComplementField } from "./fields/AddressComplementField";
 
 export default function FormDemo() {
   const form = useFormDemo();
@@ -75,6 +76,9 @@ export default function FormDemo() {
             </div>
             <div className="col-span-2">
               <AddressNumberField control={form.control} />
+            </div>
+            <div className="col-span-4">
+              <AddressComplementField control={form.control} />
             </div>
           </div>
           <div className="pt-5 pl-6">
