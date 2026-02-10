@@ -25,11 +25,11 @@ export const addressSchema = z.object({
   neighborhood: z.string().min(1, "Bairro obrigatório"),
   zipCode: z.string().transform((val) => val.replace(/\D/g, "")),
   city: z.string().min(1),
-  // state: z.enum([
-  //   "AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS",
-  //   "MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR",
-  //   "SC","SP","SE","TO",
-  // ]),
+  state: z.enum([
+    "AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS",
+    "MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR",
+    "SC","SP","SE","TO",
+  ], "Escolha um Estado."),
 });
 
 export const formSchema = z.object({
