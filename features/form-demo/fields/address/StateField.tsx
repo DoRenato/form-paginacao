@@ -53,7 +53,7 @@ export default function StateField({ control }: FieldProps) {
       control={control}
       render={({ field, fieldState }) => (
         <Field data-invalid={fieldState.invalid}>
-          <FieldLabel htmlFor="address.state">Cidade</FieldLabel>
+          <FieldLabel htmlFor="address.state">Estado</FieldLabel>
           <Select
             name={field.name}
             value={field.value}
@@ -64,10 +64,10 @@ export default function StateField({ control }: FieldProps) {
               aria-invalid={fieldState.invalid}
               className="min-w-30"
             >
-              <SelectValue placeholder="Select" />
+              <SelectValue placeholder="Selecionar" />
             </SelectTrigger>
             <SelectContent position="item-aligned">
-              <SelectItem value="auto">Auto</SelectItem>
+              <SelectItem value="Select" disabled={true}>Selecionar</SelectItem>
               <SelectSeparator />
               {spokenLanguages.map((language) => (
                 <SelectItem
