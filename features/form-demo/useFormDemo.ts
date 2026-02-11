@@ -19,6 +19,7 @@ export function useFormDemo() {
         neighborhood:"",
         zipCode:"",
         city:"",
+        state:"Select"
       },
     },
   });
