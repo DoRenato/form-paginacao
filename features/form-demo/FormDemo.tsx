@@ -10,7 +10,7 @@ import { FormValues } from "./schema";
 import { FormProvider } from "react-hook-form";
 import PhoneNumbers from "./fields/PhoneNumbersField";
 import { CpfField } from "./fields/CpfField";
-import { BirthDateField } from "./fields/BirthDate";
+import { BirthDateField } from "./fields/BirthDateField";
 import GenderField from "./fields/GenderField";
 import FormSection from "@/components/form/FormSection";
 import { StreetField } from "./fields/address/StreetField";
@@ -25,7 +25,6 @@ export default function FormDemo() {
   const form = useFormDemo();
 
   function onSubmit(data: FormValues) {
-    toast.success("Enviado");
     const cleaned = data.phoneNumbers.map((p) => ({
       number: p.number.replace(/\D/g, ""),
     }));
@@ -36,7 +35,7 @@ export default function FormDemo() {
         ? data.birthDate.toLocaleDateString("pt-BR")
         : "",
     };
-
+    toast.success(`Enviado`);
     console.log(formatted);
   }
 
@@ -68,11 +67,15 @@ export default function FormDemo() {
               <GenderField />
             </div>
           </div>
+
           <div className="pt-15">
             <FormSection
               titulo="Dados de Endereço"
               descricao="Vamos guardar seu endereço para a entrega do seu produto imaginário."
             />
+          </div>
+          <div className="px-6 pb-5 w-50">
+            <ZipCodeField control={form.control} />
           </div>
           <div className="grid grid-cols-12 gap-3 px-6">
             <div className="col-span-4">
@@ -86,9 +89,6 @@ export default function FormDemo() {
             </div>
             <div className="col-span-4">
               <NeighborhoodField control={form.control} />
-            </div>
-            <div className="col-span-4">
-              <ZipCodeField control={form.control} />
             </div>
             <div className="col-span-4">
               <CityField control={form.control} />
