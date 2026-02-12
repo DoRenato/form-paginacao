@@ -78,6 +78,7 @@ export const formSchema = z.object({
     .min(2, "Sobrenome muito curto.")
     .max(32, "Sobrenome muito longo.")
     .regex(onlyLetters, "Use apenas letras"),
+  email: z.email("Email inválido"),
   phoneNumbers: z
     .array(
       z.object({

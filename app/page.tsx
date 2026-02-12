@@ -3,7 +3,7 @@ import FormDemo from "@/features/form-demo/FormDemo";
 export default function Home() {
   return (
     <main className="container mx-auto">
-      <div className="grid grid-cols-2">
+      <div className="pt-2 grid grid-cols-2">
         <div>
           <FormDemo />
         </div>

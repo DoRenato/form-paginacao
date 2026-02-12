@@ -9,6 +9,7 @@ export function useFormDemo() {
       name: "",
       lastName: "",
       cpf: "",
+      email:"",
       phoneNumbers: [{ number: "" }],
       birthDate: undefined,
       gender: "not_say",

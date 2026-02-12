@@ -20,6 +20,7 @@ import { NeighborhoodField } from "./fields/address/NeighborhoodField";
 import { ZipCodeField } from "./fields/address/ZipCodeField";
 import { CityField } from "./fields/address/CityField";
 import StateField from "./fields/address/StateField";
+import { EmailField } from "./fields/EmailField";
 
 export default function FormDemo() {
   const form = useFormDemo();
@@ -48,52 +49,55 @@ export default function FormDemo() {
             descricao="Nos ajude a te conhecer melhor."
           />
           <div className="grid grid-cols-12 gap-3 px-6">
-            <div className="col-span-4">
+            <div className="col-span-3">
               <NameField control={form.control} />
             </div>
-            <div className="col-span-4">
+            <div className="col-span-3">
               <LastNameField control={form.control} />
             </div>
-            <div className="col-span-4">
+            <div className="col-span-3">
               <CpfField control={form.control} />
+            </div>
+            <div className="col-span-3">
+              <BirthDateField />
+            </div>
+            <div className="col-span-4">
+              <EmailField control={form.control} />
             </div>
             <div className="col-span-4">
               <PhoneNumbers control={form.control} />
-            </div>
-            <div className="col-span-4">
-              <BirthDateField />
             </div>
             <div className="col-span-4">
               <GenderField />
             </div>
           </div>
 
-          <div className="pt-15">
+          <div className="pt-5">
             <FormSection
               titulo="Dados de Endereço"
-              descricao="Vamos guardar seu endereço para a entrega do seu produto imaginário."
+              descricao="Ao digitar o CEP ele irá puxar todos os dados do mesmo."
             />
           </div>
           <div className="px-6 pb-5 w-50">
             <ZipCodeField control={form.control} />
           </div>
-          <div className="grid grid-cols-12 gap-3 px-6">
-            <div className="col-span-4">
+          <div className="grid grid-cols-24 gap-3 px-6">
+            <div className="col-span-8">
               <StreetField control={form.control} />
             </div>
-            <div className="col-span-2">
+            <div className="col-span-3">
               <AddressNumberField control={form.control} />
             </div>
-            <div className="col-span-4">
+            <div className="col-span-7">
               <ComplementField control={form.control} />
             </div>
-            <div className="col-span-4">
+            <div className="col-span-8">
               <NeighborhoodField control={form.control} />
             </div>
-            <div className="col-span-4">
+            <div className="col-span-6">
               <CityField control={form.control} />
             </div>
-            <div className="col-span-4">
+            <div className="col-span-6">
               <StateField control={form.control} />
             </div>
           </div>
