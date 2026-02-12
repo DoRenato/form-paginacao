@@ -25,6 +25,7 @@ import PhoneNotificationField from "./fields/notifications/PhoneNotificationFiel
 import { CheckboxesTitleField } from "./fields/CheckboxesTitleField";
 import EmailNotificationField from "./fields/notifications/EmailNotificationField";
 import { Separator } from "@/components/ui/separator";
+import MultiStepSwitchField from "./fields/MultiStepSwitchField";
 
 export default function FormDemo() {
   const form = useFormDemo();
@@ -113,15 +114,21 @@ export default function FormDemo() {
             titulo="Outros Dados"
             descricao="Checkboxes, switches etc"
           />
-          <div className="grid grid-cols-12">
+          <div className="relative grid grid-cols-12">
             <div className="col-span-4">
               <CheckboxesTitleField title="Notificações">
                 <PhoneNotificationField />
                 <EmailNotificationField />
               </CheckboxesTitleField>
             </div>
-            <div className="">
-              <Button type="submit">Submit</Button>
+            <div className="col-span-5">
+              <MultiStepSwitchField/>
+            </div>
+            <div className="col-span-1">
+              {/* espaço */}
+            </div>
+            <div className="absolute right-0 bottom-0">
+              <Button type="submit">Enviar</Button>
             </div>
           </div>
         </form>

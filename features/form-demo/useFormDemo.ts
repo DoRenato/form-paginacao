@@ -13,6 +13,7 @@ export function useFormDemo() {
       phoneNumbers: [{ number: "" }],
       birthDate: undefined,
       gender: "not_say",
+      multistep: false,
       notifications: {
         phone: false,
         email: false,

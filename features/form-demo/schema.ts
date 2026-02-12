@@ -106,6 +106,7 @@ export const formSchema = z.object({
   gender: z.enum(["male", "female", "not_say"]),
   address: addressSchema,
   notifications: notificationSchema,
+  multistep:z.boolean()
 });
 
 export type FormValues = z.infer<typeof formSchema>;
