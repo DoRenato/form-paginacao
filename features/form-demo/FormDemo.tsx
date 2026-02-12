@@ -21,6 +21,9 @@ import { ZipCodeField } from "./fields/address/ZipCodeField";
 import { CityField } from "./fields/address/CityField";
 import StateField from "./fields/address/StateField";
 import { EmailField } from "./fields/EmailField";
+import PhoneNotificationField from "./fields/notifications/PhoneNotificationField";
+import { CheckboxesTitleField } from "./fields/CheckboxesTitleField";
+import EmailNotificationField from "./fields/notifications/EmailNotificationField";
 
 export default function FormDemo() {
   const form = useFormDemo();
@@ -78,7 +81,7 @@ export default function FormDemo() {
               descricao="Ao digitar o CEP ele irá puxar todos os dados do mesmo."
             />
           </div>
-          <div className="px-6 pb-5 w-50">
+          <div className="w-50 px-6 pb-5">
             <ZipCodeField control={form.control} />
           </div>
           <div className="grid grid-cols-24 gap-3 px-6">
@@ -99,6 +102,12 @@ export default function FormDemo() {
             </div>
             <div className="col-span-6">
               <StateField control={form.control} />
+            </div>
+            <div className="col-span-9">
+              <CheckboxesTitleField title="Notificações">
+                <PhoneNotificationField />
+                <EmailNotificationField />
+              </CheckboxesTitleField>
             </div>
           </div>
           <div className="pt-5 pl-6">

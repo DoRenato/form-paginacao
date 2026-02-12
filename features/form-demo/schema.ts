@@ -18,6 +18,11 @@ const phoneSchema = z
     message: "Número de celular inválido",
   });
 
+export const notificationSchema = z.object({
+  phone: z.boolean(),
+  email: z.boolean(),
+});
+
 export const addressSchema = z.object({
   street: z.string().min(1, "Rua obrigatória"),
   number: z.string().min(1, "Número obrigatório"),
@@ -100,6 +105,7 @@ export const formSchema = z.object({
   birthDate: z.date({ error: "Data obrigatória" }),
   gender: z.enum(["male", "female", "not_say"]),
   address: addressSchema,
+  notifications: notificationSchema,
 });
 
 export type FormValues = z.infer<typeof formSchema>;
