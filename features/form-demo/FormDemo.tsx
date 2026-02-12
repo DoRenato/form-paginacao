@@ -24,6 +24,7 @@ import { EmailField } from "./fields/EmailField";
 import PhoneNotificationField from "./fields/notifications/PhoneNotificationField";
 import { CheckboxesTitleField } from "./fields/CheckboxesTitleField";
 import EmailNotificationField from "./fields/notifications/EmailNotificationField";
+import { Separator } from "@/components/ui/separator";
 
 export default function FormDemo() {
   const form = useFormDemo();
@@ -45,13 +46,13 @@ export default function FormDemo() {
 
   return (
     <FormProvider {...form}>
-      <Card>
+      <Card className="px-6">
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <FormSection
             titulo="Dados Pessoais"
-            descricao="Nos ajude a te conhecer melhor."
+            descricao="Os campos como CPF e Telefone possuem máscaras para melhor experiência."
           />
-          <div className="grid grid-cols-12 gap-3 px-6">
+          <div className="grid grid-cols-12 gap-3">
             <div className="col-span-3">
               <NameField control={form.control} />
             </div>
@@ -61,57 +62,67 @@ export default function FormDemo() {
             <div className="col-span-3">
               <CpfField control={form.control} />
             </div>
-            <div className="col-span-3">
-              <BirthDateField />
+            <div className="col-span-3 row-span-2">
+              <GenderField />
             </div>
             <div className="col-span-4">
               <EmailField control={form.control} />
             </div>
-            <div className="col-span-4">
-              <PhoneNumbers control={form.control} />
-            </div>
-            <div className="col-span-4">
-              <GenderField />
-            </div>
-          </div>
-
-          <div className="pt-5">
-            <FormSection
-              titulo="Dados de Endereço"
-              descricao="Ao digitar o CEP ele irá puxar todos os dados do mesmo."
-            />
-          </div>
-          <div className="w-50 px-6 pb-5">
-            <ZipCodeField control={form.control} />
-          </div>
-          <div className="grid grid-cols-24 gap-3 px-6">
-            <div className="col-span-8">
-              <StreetField control={form.control} />
+            <div className="col-span-2">
+              <BirthDateField />
             </div>
             <div className="col-span-3">
+              <PhoneNumbers control={form.control} />
+            </div>
+          </div>
+          <div className="pt-2 pb-4">
+            <Separator />
+          </div>
+          <FormSection
+            titulo="Dados de Endereço"
+            descricao="Ao digitar o CEP, ele irá resgatar todos os dados de endereço do mesmo."
+          />
+          <div className="w-30 pb-5">
+            <ZipCodeField control={form.control} />
+          </div>
+          <div className="grid grid-cols-12 gap-3">
+            <div className="col-span-3">
+              <StreetField control={form.control} />
+            </div>
+            <div className="col-span-1">
               <AddressNumberField control={form.control} />
             </div>
-            <div className="col-span-7">
+            <div className="col-span-4">
               <ComplementField control={form.control} />
             </div>
-            <div className="col-span-8">
+            <div className="col-span-3">
               <NeighborhoodField control={form.control} />
             </div>
-            <div className="col-span-6">
+            <div className="col-span-3">
               <CityField control={form.control} />
             </div>
-            <div className="col-span-6">
+            <div className="col-span-3">
               <StateField control={form.control} />
             </div>
-            <div className="col-span-9">
+            <div className="col-span-3">{/* espaço */}</div>
+          </div>
+          <div className="pt-2 pb-4">
+            <Separator />
+          </div>
+          <FormSection
+            titulo="Outros Dados"
+            descricao="Checkboxes, switches etc"
+          />
+          <div className="grid grid-cols-12">
+            <div className="col-span-4">
               <CheckboxesTitleField title="Notificações">
                 <PhoneNotificationField />
                 <EmailNotificationField />
               </CheckboxesTitleField>
             </div>
-          </div>
-          <div className="pt-5 pl-6">
-            <Button type="submit">Submit</Button>
+            <div className="">
+              <Button type="submit">Submit</Button>
+            </div>
           </div>
         </form>
       </Card>

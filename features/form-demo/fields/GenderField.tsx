@@ -14,15 +14,15 @@ export default function GenderField() {
         <Field data-invalid={fieldState.invalid}>
           <FieldLabel htmlFor="gender">Gênero</FieldLabel>
           <RadioGroup value={field.value} onValueChange={field.onChange} className="w-fit">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1">
               <RadioGroupItem value="male" id="male" />
               <Label htmlFor="male">Masculino</Label>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1">
               <RadioGroupItem value="female" id="female" />
               <Label htmlFor="female">Feminino</Label>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1">
               <RadioGroupItem value="not_say" id="not_say" />
               <Label htmlFor="not_say">Prefiro não responder</Label>
             </div>
