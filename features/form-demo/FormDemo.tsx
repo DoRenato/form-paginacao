@@ -26,23 +26,47 @@ import { CheckboxesTitleField } from "./fields/CheckboxesTitleField";
 import EmailNotificationField from "./fields/notifications/EmailNotificationField";
 import { Separator } from "@/components/ui/separator";
 import MultiStepSwitchField from "./fields/MultiStepSwitchField";
+import React from "react";
+import { UserPayload } from "@/data/listOfAccounts";
 
-export default function FormDemo() {
+type FormDemoProps = {
+  setAccounts: React.Dispatch<React.SetStateAction<UserPayload[]>>; //sempre que for setAlgo precisa ser desse jeito
+};
+
+export default function FormDemo({ setAccounts }: FormDemoProps) {
   const form = useFormDemo();
 
   function onSubmit(data: FormValues) {
     const cleaned = data.phoneNumbers.map((p) => ({
       number: p.number.replace(/\D/g, ""),
     }));
-    const formatted = {
-      ...data,
-      phoneNumbers: cleaned,
+    const payload: UserPayload = {
+      name: data.name,
+      lastName: data.lastName,
+      email: data.email,
+      cpf: data.cpf,
+      gender: data.gender,
+      multistep: data.multistep,
       birthDate: data.birthDate
         ? data.birthDate.toLocaleDateString("pt-BR")
         : "",
+      phoneNumbers: cleaned,
+      notifications: {
+        phone: data.notifications.phone,
+        email: data.notifications.email,
+      },
+      address: {
+        street: data.address.street,
+        number: data.address.number,
+        complement: data.address.complement ?? "",
+        neighborhood: data.address.neighborhood,
+        zipCode: data.address.zipCode,
+        city: data.address.city,
+        state: data.address.state,
+      },
     };
-    toast.success(`Enviado`);
-    console.log(formatted);
+    setAccounts((prev) => [payload, ...prev]); // joga pro topo
+    toast.success("Enviado");
   }
 
   return (
@@ -122,11 +146,9 @@ export default function FormDemo() {
               </CheckboxesTitleField>
             </div>
             <div className="col-span-5">
-              <MultiStepSwitchField/>
+              <MultiStepSwitchField />
             </div>
-            <div className="col-span-1">
-              {/* espaço */}
-            </div>
+            <div className="col-span-1">{/* espaço */}</div>
             <div className="absolute right-0 bottom-0">
               <Button type="submit">Enviar</Button>
             </div>

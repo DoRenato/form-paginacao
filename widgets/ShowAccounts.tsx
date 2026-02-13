@@ -1,5 +1,4 @@
 "use client";
-import { listOfAccount } from "@/data/listOfAccounts";
 import {
   Table,
   TableBody,
@@ -26,16 +25,20 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useState } from "react";
+import { UserPayload } from "@/data/listOfAccounts";
 
-export default function ShowAccounts() {
+type Props = {
+  accounts: UserPayload[];
+};
+
+export default function ShowAccounts({ accounts }: Props) {
   const [linhas, setLinhas] = useState(3);
   const [pagina, setPagina] = useState(1);
-  const totalPaginas = Math.ceil(listOfAccount.length / linhas);
+  const totalPaginas = Math.ceil(accounts.length / linhas);
   const inicio = (pagina - 1) * linhas;
   const fim = inicio + linhas;
-  const contas = listOfAccount.slice(inicio, fim);
+  const contas = accounts.slice(inicio, fim);
   const linhasVazias = linhas - contas.length;
-  console.log(linhasVazias, linhas, contas.length);
   const getPages = () => {
     if (totalPaginas <= 5) {
       return Array.from({ length: totalPaginas }, (_, i) => i + 1);

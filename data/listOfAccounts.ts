@@ -30,7 +30,7 @@ export type UserPayload = {
   multistep: boolean;
 };
 
-export const listOfAccount: UserPayload[] = [
+export const listOfAccounts: UserPayload[] = [
   {
     name: "Fulano",
     lastName: "de Tal",
