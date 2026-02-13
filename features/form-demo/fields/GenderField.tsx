@@ -13,7 +13,11 @@ export default function GenderField() {
       render={({ field, fieldState }) => (
         <Field data-invalid={fieldState.invalid}>
           <FieldLabel htmlFor="gender">Gênero</FieldLabel>
-          <RadioGroup value={field.value} onValueChange={field.onChange} className="w-fit">
+          <RadioGroup
+            value={field.value}
+            onValueChange={field.onChange}
+            className="flex w-fit lg:flex-col"
+          >
             <div className="flex items-center gap-1">
               <RadioGroupItem value="male" id="male" />
               <Label htmlFor="male">Masculino</Label>
@@ -24,7 +28,7 @@ export default function GenderField() {
             </div>
             <div className="flex items-center gap-1">
               <RadioGroupItem value="not_say" id="not_say" />
-              <Label htmlFor="not_say">Prefiro não responder</Label>
+              <Label htmlFor="not_say">Não responder</Label>
             </div>
           </RadioGroup>
           {fieldState.error && <FieldError errors={[fieldState.error]} />}
