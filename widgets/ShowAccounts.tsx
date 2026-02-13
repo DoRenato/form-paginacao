@@ -7,25 +7,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Field, FieldLabel } from "@/components/ui/field";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { useState } from "react";
 import { UserPayload } from "@/data/listOfAccounts";
+import PaginationTable from "@/components/form/PaginationTable";
 
 type Props = {
   accounts: UserPayload[];
@@ -56,26 +40,36 @@ export default function ShowAccounts({ accounts }: Props) {
   };
   return (
     <div>
-      <Table>
+      <Table className="w-full table-fixed">
         <TableHeader>
           <TableRow>
-            <TableHead className="w-25">Nome</TableHead>
-            <TableHead>CPF</TableHead>
-            <TableHead>Telefone</TableHead>
-            <TableHead className="text-right">Amount</TableHead>
+            <TableHead className="w-40">Nome</TableHead>
+            <TableHead className="w-40">Email</TableHead>
+            <TableHead className="w-40">Telefone</TableHead>
+            <TableHead className="w-40">Gênero</TableHead>
+            <TableHead className="text-right">Ações</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {contas.map((conta, indice) => (
             <TableRow key={indice}>
-              <TableCell className="font-medium">
+              <TableCell className="max-w-40 truncate font-medium">
                 {conta.name} {conta.lastName}
               </TableCell>
-              <TableCell>{conta.cpf}</TableCell>
-              <TableCell className="flex flex-col">
-                <div>{conta.phoneNumbers[0].number}</div>
+              <TableCell className="max-w-40 truncate">{conta.email}</TableCell>
+              <TableCell className="max-w-25 truncate">
+                {conta.phoneNumbers[0].number}
               </TableCell>
-              <TableCell className="text-right">{conta.email}</TableCell>
+              <TableCell className="max-w-25 truncate">
+                {conta.gender}
+              </TableCell>
+              <TableCell
+                className="flex justify-end"
+              >
+                <div className="cursor-pointer font-medium hover:underline">
+                  Ver completo
+                </div>
+              </TableCell>
             </TableRow>
           ))}
           {/* linhas vazias */}
@@ -87,67 +81,14 @@ export default function ShowAccounts({ accounts }: Props) {
         </TableBody>
       </Table>
 
-      <div className="flex gap-4 pt-5">
-        <Field orientation="horizontal" className="w-fit">
-          <FieldLabel htmlFor="select-rows-per-page">
-            Linhas por página
-          </FieldLabel>
-          <Select
-            defaultValue={linhas.toString()}
-            onValueChange={(v) => {
-              setLinhas(Number(v));
-              setPagina(1);
-            }}
-          >
-            <SelectTrigger className="w-20" id="select-rows-per-page">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent align="start">
-              <SelectGroup>
-                <SelectItem value="3">3</SelectItem>
-                <SelectItem value="5">5</SelectItem>
-                <SelectItem value="7">7</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </Field>
-        <Pagination className="mx-0 w-auto">
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setPagina((p) => Math.max(1, p - 1));
-                }}
-              />
-            </PaginationItem>
-            {getPages().map((page) => (
-              <PaginationItem key={page}>
-                <PaginationLink
-                  href="#"
-                  isActive={pagina === page}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setPagina(page);
-                  }}
-                >
-                  {page}
-                </PaginationLink>
-              </PaginationItem>
-            ))}
-            <PaginationItem>
-              <PaginationNext
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setPagina((p) => Math.min(totalPaginas, p + 1));
-                }}
-              />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
-      </div>
+      <PaginationTable
+        pagina={pagina}
+        linhas={linhas}
+        totalPaginas={totalPaginas}
+        setPagina={setPagina}
+        setLinhas={setLinhas}
+        getPages={getPages}
+      />
     </div>
   );
 }
