@@ -62,7 +62,7 @@ export default function PaginationTable({
         <PaginationContent>
           <PaginationItem>
             <PaginationPrevious
-              href="#"
+              className="cursor-pointer select-none"
               onClick={(e) => {
                 e.preventDefault();
                 setPagina(Math.max(1, pagina - 1));
@@ -72,7 +72,7 @@ export default function PaginationTable({
           {getPages().map((page) => (
             <PaginationItem key={page}>
               <PaginationLink
-                href="#"
+                className="cursor-pointer select-none"
                 isActive={pagina === page}
                 onClick={(e) => {
                   e.preventDefault();
@@ -85,7 +85,7 @@ export default function PaginationTable({
           ))}
           <PaginationItem>
             <PaginationNext
-              href="#"
+              className="cursor-pointer select-none"
               onClick={(e) => {
                 e.preventDefault();
                 setPagina(Math.min(totalPaginas, pagina + 1));
