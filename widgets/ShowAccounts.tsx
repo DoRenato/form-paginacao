@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/table";
 import { useState } from "react";
 import { UserPayload } from "@/data/listOfAccounts";
+import { ShowFullUserData } from "@/components/form/ShowFullUserData";
 import PaginationTable from "@/components/form/PaginationTable";
 
 type Props = {
@@ -18,6 +19,8 @@ type Props = {
 export default function ShowAccounts({ accounts }: Props) {
   const [linhas, setLinhas] = useState(3);
   const [pagina, setPagina] = useState(1);
+  const [open, setOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   const totalPaginas = Math.ceil(accounts.length / linhas);
   const inicio = (pagina - 1) * linhas;
   const fim = inicio + linhas;
@@ -38,6 +41,10 @@ export default function ShowAccounts({ accounts }: Props) {
       ];
     return [pagina - 2, pagina - 1, pagina, pagina + 1, pagina + 2];
   };
+  function openUser(index: number) {
+    setActiveIndex(index);
+    setOpen(true);
+  }
   return (
     <div>
       <Table className="w-full table-fixed">
@@ -65,6 +72,7 @@ export default function ShowAccounts({ accounts }: Props) {
               </TableCell>
               <TableCell
                 className="flex justify-end"
+                onClick={() => openUser(indice)}
               >
                 <div className="cursor-pointer font-medium hover:underline">
                   Ver completo
@@ -88,6 +96,13 @@ export default function ShowAccounts({ accounts }: Props) {
         setPagina={setPagina}
         setLinhas={setLinhas}
         getPages={getPages}
+      />
+
+      <ShowFullUserData
+        activeIndex={activeIndex}
+        contas={contas}
+        open={open}
+        setOpen={setOpen}
       />
     </div>
   );
