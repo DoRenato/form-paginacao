@@ -11,6 +11,7 @@ import { useState } from "react";
 import { UserPayload } from "@/data/listOfAccounts";
 import { ShowFullUserData } from "@/components/form/ShowFullUserData";
 import PaginationTable from "@/components/form/PaginationTable";
+import { Card } from "@/components/ui/card";
 
 type Props = {
   accounts: UserPayload[];
@@ -46,7 +47,7 @@ export default function ShowAccounts({ accounts }: Props) {
     setOpen(true);
   }
   return (
-    <div>
+    <Card className="px-5">
       <Table className="w-full table-fixed">
         <TableHeader>
           <TableRow>
@@ -104,6 +105,6 @@ export default function ShowAccounts({ accounts }: Props) {
         open={open}
         setOpen={setOpen}
       />
-    </div>
+    </Card>
   );
 }
