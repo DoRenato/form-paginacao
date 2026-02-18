@@ -50,11 +50,15 @@ export default function ShowAccounts({ accounts }: Props) {
     <Card className="px-3 lg:px-5">
       <Table className="w-full table-fixed">
         <TableHeader>
-          <TableRow>
+          <TableRow className="hidden lg:table-row">
             <TableHead className="w-40">Nome</TableHead>
             <TableHead className="w-40">Email</TableHead>
             <TableHead className="w-40">Telefone</TableHead>
             <TableHead className="w-40">Gênero</TableHead>
+            <TableHead className="text-right">Ações</TableHead>
+          </TableRow>
+          <TableRow className="lg:hidden">
+            <TableHead className="w-40">Nome</TableHead>
             <TableHead className="text-right">Ações</TableHead>
           </TableRow>
         </TableHeader>
@@ -64,18 +68,20 @@ export default function ShowAccounts({ accounts }: Props) {
               <TableCell className="max-w-40 truncate font-medium">
                 {conta.name} {conta.lastName}
               </TableCell>
-              <TableCell className="max-w-40 truncate">{conta.email}</TableCell>
-              <TableCell className="max-w-25 truncate">
+              <TableCell className="hidden max-w-40 truncate lg:table-cell">
+                {conta.email}
+              </TableCell>
+              <TableCell className="hidden max-w-25 truncate lg:table-cell">
                 {conta.phoneNumbers[0].number}
               </TableCell>
-              <TableCell className="max-w-25 truncate">
+              <TableCell className="hidden max-w-25 truncate lg:table-cell">
                 {conta.gender}
               </TableCell>
               <TableCell
                 className="flex justify-end"
                 onClick={() => openUser(indice)}
               >
-                <div className="cursor-pointer font-medium hover:underline">
+                <div className="cursor-pointer underline hover:underline lg:font-medium lg:no-underline">
                   Ver completo
                 </div>
               </TableCell>
@@ -84,7 +90,7 @@ export default function ShowAccounts({ accounts }: Props) {
           {/* linhas vazias */}
           {Array.from({ length: linhasVazias }).map((_, i) => (
             <TableRow key={`empty-${i}`}>
-              <TableCell colSpan={4}>&nbsp;</TableCell>
+              <TableCell className="col-span-2 lg:col-span-5">&nbsp;</TableCell>
             </TableRow>
           ))}
         </TableBody>
