@@ -47,7 +47,7 @@ export default function ShowAccounts({ accounts }: Props) {
     setOpen(true);
   }
   return (
-    <Card className="px-5">
+    <Card className="px-3 lg:px-5">
       <Table className="w-full table-fixed">
         <TableHeader>
           <TableRow>

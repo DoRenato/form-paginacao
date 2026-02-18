@@ -34,8 +34,8 @@ export default function PaginationTable({
   getPages,
 }: Props) {
   return (
-    <div className="flex gap-4 pt-5">
-      <Field orientation="horizontal" className="w-fit">
+    <div className="flex flex-col items-center gap-4 pt-5 lg:flex-row lg:items-start">
+      <Field orientation="horizontal" className="order-2 w-fit lg:order-0">
         <FieldLabel htmlFor="select-rows-per-page">
           Linhas por página
         </FieldLabel>
@@ -58,7 +58,7 @@ export default function PaginationTable({
           </SelectContent>
         </Select>
       </Field>
-      <Pagination className="mx-0 w-auto">
+      <Pagination className="order-1 mx-0 w-auto lg:order-0">
         <PaginationContent>
           <PaginationItem>
             <PaginationPrevious
