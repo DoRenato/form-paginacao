@@ -22,7 +22,6 @@ import { CityField } from "@/features/form-demo/fields/address/CityField";
 import StateField from "@/features/form-demo/fields/address/StateField";
 import { EmailField } from "@/features/form-demo/fields/EmailField";
 import PhoneNotificationField from "@/features/form-demo/fields/notifications/PhoneNotificationField";
-import { CheckboxesTitleField } from "@/features/form-demo/fields/CheckboxesTitleField";
 import EmailNotificationField from "@/features/form-demo/fields/notifications/EmailNotificationField";
 import { Separator } from "@/components/ui/separator";
 import MultiStepSwitchField from "@/features/form-demo/fields/MultiStepSwitchField";
@@ -71,7 +70,7 @@ export default function FormDemo({ setAccounts }: FormDemoProps) {
 
   return (
     <FormProvider {...form}>
-      <Card className="px-6">
+      <Card className="px-3 lg:px-6">
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <FormSection
             titulo="Dados Pessoais"
@@ -107,10 +106,10 @@ export default function FormDemo({ setAccounts }: FormDemoProps) {
             titulo="Dados de Endereço"
             descricao="Ao digitar o CEP, ele irá resgatar todos os dados de endereço do mesmo."
           />
-          <div className="w-35 lg:w-30 pb-5">
+          <div className="w-35 pb-5 lg:w-30">
             <ZipCodeField control={form.control} />
           </div>
-          <div className="grid grid-cols-2 lg:grid-cols-12 gap-3">
+          <div className="grid grid-cols-2 gap-3 lg:grid-cols-12">
             <div className="lg:col-span-3">
               <StreetField control={form.control} />
             </div>
@@ -139,18 +138,21 @@ export default function FormDemo({ setAccounts }: FormDemoProps) {
             descricao="Checkboxes, switches etc"
           />
           <div className="relative grid grid-cols-12">
-            <div className="col-span-4">
-              <CheckboxesTitleField title="Notificações">
+            <div className="col-span-12 pb-7 lg:col-span-4 lg:pb-0">
+              <h3 className="pb-2 text-sm font-semibold">Notificações</h3>
+              <div className="flex flex-col gap-2">
                 <PhoneNotificationField />
                 <EmailNotificationField />
-              </CheckboxesTitleField>
+              </div>
             </div>
-            <div className="col-span-5">
+            <div className="col-span-12 pb-7 lg:col-span-5 lg:pb-0">
               <MultiStepSwitchField />
             </div>
-            <div className="col-span-1">{/* espaço */}</div>
-            <div className="absolute right-0 bottom-0">
-              <Button type="submit">Enviar</Button>
+            <div className="hidden lg:col-span-1">{/* espaço */}</div>
+            <div className="col-span-12 lg:absolute lg:right-0 lg:bottom-0">
+              <Button type="submit" className="w-full">
+                Enviar
+              </Button>
             </div>
           </div>
         </form>
