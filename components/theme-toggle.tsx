@@ -8,7 +8,7 @@ export default function ThemeToggle() {
     // Verifica se estamos no cliente e se há tema salvo
     if (typeof window !== "undefined") {
       const savedTheme = localStorage.getItem("theme");
-      
+
       if (savedTheme === "dark") {
         document.documentElement.classList.add("dark");
         return true;
@@ -20,7 +20,7 @@ export default function ThemeToggle() {
   const toggleTheme = () => {
     const newTheme = !isDark;
     setIsDark(newTheme);
-    
+
     if (newTheme) {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
@@ -33,14 +33,14 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
+      className="rounded-lg bg-gray-200 p-2 transition-colors hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700"
       aria-label="Alternar tema"
       suppressHydrationWarning
     >
       {isDark ? (
-        <Sun className="w-5 h-5 text-yellow-500" />
+        <Sun className="h-5 w-5 text-yellow-500" />
       ) : (
-        <Moon className="w-5 h-5 text-gray-700" />
+        <Moon className="h-5 w-5 text-gray-700" />
       )}
     </button>
   );

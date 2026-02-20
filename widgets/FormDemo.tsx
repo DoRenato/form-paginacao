@@ -27,6 +27,7 @@ import { Separator } from "@/components/ui/separator";
 import MultiStepSwitchField from "@/features/form-demo/fields/MultiStepSwitchField";
 import React from "react";
 import { UserPayload } from "@/data/listOfAccounts";
+import ThemeToggle from "@/components/theme-toggle";
 
 type FormDemoProps = {
   setAccounts: React.Dispatch<React.SetStateAction<UserPayload[]>>; //sempre que for setAlgo precisa ser desse jeito
@@ -70,7 +71,11 @@ export default function FormDemo({ setAccounts }: FormDemoProps) {
 
   return (
     <FormProvider {...form}>
-      <Card className="px-3 lg:px-6">
+      <Card className="px-3 lg:px-6 relative">
+        <div className="flex absolute top-1 right-1 lg:top-4 lg:right-4 items-center gap-2">
+          <p className="font-semibold">Alterar Tema:</p>
+          <ThemeToggle />
+        </div>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <FormSection
             titulo="Dados Pessoais"
