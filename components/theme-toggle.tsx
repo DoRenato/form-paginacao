@@ -1,21 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 
 export default function ThemeToggle() {
-  const [isDark, setIsDark] = useState(() => {
-    // Verifica se estamos no cliente e se há tema salvo
-    if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("theme");
+  const [mounted, setMounted] = useState(false);
+  const [isDark, setIsDark] = useState(false);
 
-      if (savedTheme === "dark") {
-        document.documentElement.classList.add("dark");
-        return true;
-      }
+  // Só roda no cliente
+  useEffect(() => {
+    setMounted(true);
+
+    const savedTheme = localStorage.getItem("theme");
+    const dark = savedTheme === "dark";
+
+    setIsDark(dark);
+
+    if (dark) {
+      document.documentElement.classList.add("dark");
     }
-    return false;
-  });
+  }, []);
 
   const toggleTheme = () => {
     const newTheme = !isDark;
@@ -30,12 +34,14 @@ export default function ThemeToggle() {
     }
   };
 
+  // ⛔ NÃO renderiza nada até montar no cliente
+  if (!mounted) return null;
+
   return (
     <button
       onClick={toggleTheme}
       className="rounded-lg bg-gray-200 p-2 transition-colors hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700"
       aria-label="Alternar tema"
-      suppressHydrationWarning
     >
       {isDark ? (
         <Sun className="h-5 w-5 text-yellow-500" />
